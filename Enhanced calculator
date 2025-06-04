@@ -1,0 +1,140 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n****Enhanced Calculator ****");
+            System.out.println("1. Arithmetic Operations");
+            System.out.println("2. Scientific Operations");
+            System.out.println("3. Unit Conversion");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();  
+
+            switch (choice) {
+                case 1:
+                    arithmetic(scanner);  
+                    break;
+                case 2:
+                    scientific(scanner);
+                    break;
+                case 3:
+                    conversionMenu(scanner);
+                    break;
+                case 4:
+                    System.out.println("Exiting calculator. Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid choice! Try again.");
+            }
+        } while (choice != 4);
+
+        scanner.close(); 
+    }
+
+    // Arithmetic method
+    public static void arithmetic(Scanner scanner) {
+        int ch;
+        do {
+            System.out.println("\n-- Arithmetic Menu --");
+            System.out.println("1. Addition");
+            System.out.println("2. Subtraction");
+            System.out.println("3. Division");
+            System.out.println("4. Multiplication");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+            ch = scanner.nextInt();
+
+            if (ch >= 1 && ch <= 4) {
+                System.out.print("Enter first number: ");
+                int a = scanner.nextInt();
+                System.out.print("Enter second number: ");
+                int b = scanner.nextInt();
+
+                switch (ch) {
+                    case 1:
+                        System.out.println("Result: " + (a + b));
+                        break;
+                    case 2:
+                        System.out.println("Result: " + (a - b));
+                        break;
+                    case 3:
+                        if (b != 0)
+                            System.out.println("Result: " + (a / b));
+                        else
+                            System.out.println("Error: Cannot divide by zero!");
+                        break;
+                    case 4:
+                        System.out.println("Result: " + (a * b));
+                        break;
+                }
+            } else if (ch != 5) {
+                System.out.println("Invalid choice! Try again.");
+            }
+        } while (ch != 5);
+    }
+
+    // Scientific method
+    public static void scientific(Scanner scanner) {
+        int ch;
+        do {
+            System.out.println("\n-- Scientific Menu --");
+            System.out.println("1. Square Root");
+            System.out.println("2. Exponential (x^y)");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            ch = scanner.nextInt();
+
+            switch (ch) {
+                case 1:
+                    System.out.print("Enter a number: ");
+                    double x = scanner.nextDouble();
+                    if (x >= 0)
+                        System.out.println("Square Root: " + Math.sqrt(x));
+                    else
+                        System.out.println("Error: Negative number!");
+                    break;
+                case 2:
+                    System.out.print("Enter base: ");
+                    double base = scanner.nextDouble();
+                    System.out.print("Enter exponent: ");
+                    double exp = scanner.nextDouble();
+                    System.out.println("Result: " + Math.pow(base, exp));
+                    break;
+                case 3:
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+            }
+        } while (ch != 3);
+    }
+
+    // Conversion method
+    public static void conversionMenu(Scanner scanner) {
+        System.out.println("\n-- Conversion Menu --");
+        System.out.println("1. Temperature (Celsius to Fahrenheit)");
+        System.out.println("2. Currency (INR to USD)");
+        System.out.print("Choose an option: ");
+        int option = scanner.nextInt();
+
+        switch (option) {
+            case 1:
+                System.out.print("Enter Celsius: ");
+                double celsius = scanner.nextDouble();
+                double fahrenheit = (celsius * 9 / 5) + 32;
+                System.out.println("Fahrenheit: " + fahrenheit);
+                break;
+            case 2:
+                System.out.print("Enter INR: ");
+                double inr = scanner.nextDouble();
+                double usd = inr / 83.0;
+                System.out.println("USD: $" + usd);
+                break;
+            default:
+                System.out.println("Invalid option.");
+        }
+    }
+}
